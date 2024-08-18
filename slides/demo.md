@@ -148,7 +148,7 @@ Share a presentation
 ---
 
 # Some Facts 📊
-Version: 0.97 beta (Dec 04 2022)
+Version: 0.98 beta (Aug 18 2024)
 
 Approximate size of the code and all libraries: 450 kb
 
@@ -171,12 +171,12 @@ Base languages: Javascript and HTML, with Marked.js, html2canvas.js, and qrcode.
 # Who Did This? 👨‍💻
 
 ## I am Gleb Likhobabin, 
-an ex-teacher and social entrepreneur in edtech. I have run several innovative social programs and educational products.
+an ex-teacher and social entrepreneur in edtech. I have run several innovative social programs and educational products and a co-founder of [Collab](https://collab.technology).
 
 I put my experience in data visualization and information design into this service. While it is just a pet project, I use this service in my workshops and other cases.
 
 
-![](/slides/public/gleb.jpg#circled)
+![](public/gleb.jpg#circled)
 
 ---
 

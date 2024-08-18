@@ -114,11 +114,16 @@ function genSlides() {
                 var foundBlock = wrappedMDSlide.match(/(\n# |\n## |\n### |\n#### |<img|\[QR\]|\n!\[)(.*?)((?=\n# )|(?=\n## )|(?=\n### )|(?=\n#### )|(?=<img)|(?=\n!\[)|(?=\[QR)|$)/s);
                 // проверяем, содержит ли блок QR-код и решаем, генерируется ли QR-код или нормальный md2html
                 var QRtest = /(\n\[QR\]|\[QR)/.test(foundBlock[1]);
-
+                
                 let htmlBlock;
                 if (QRtest) {
                     var foundCode = foundBlock[2].match(/\((.*?)\)/);
-                    var afterCode = foundBlock[0].match(/(?!.*\)).+/g) || '';
+                    var afterCode = foundBlock[0].match(/(?!.*\)).+/g) || [''];
+                    
+                    if (!Array.isArray(afterCode)) {
+                        afterCode = [afterCode];
+                    }
+                
                     htmlBlock = `<div class="qrcode qr${index}_${i}" data-qr="${foundCode[1]}"></div>${markdownToHtml(afterCode.join('\n\n'))}`;
                 } else {
                     htmlBlock = markdownToHtml(foundBlock[0]);
