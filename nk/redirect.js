@@ -12,11 +12,11 @@ fetch('/nk/urls.md')
         const mappings = {};
 
         lines.forEach(line => {
-            const [key, url] = line.split('\t');
+            const [key, url] = line.split(' ');
             if (key && url) {
                 mappings[key.trim()] = url.trim();
             }
-            console.log(key, url)
+            console.log(key, '123', url)
         });
 
         // Get the last part of the URL path

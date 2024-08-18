@@ -1,3 +1,13 @@
-projects   https://hello.com
-some-website    https://google.com
-another-example https://example.com
+4 https://docs.google.com/presentation/d/13UyugdXh6YIwnXDmIQUvvo_H0X5RXg0LxDgKLmpgF3E/edit?usp=sharing
+rsaimpactreport https://docs.google.com/presentation/d/1_UInjZoD9ATstrz8Sj__3vNVHQ0rUEuzv9wbiEYadxw/edit?usp=sharing
+business https://drive.google.com/file/d/10DJZJv2K0fonf4nkLd_n22qnOux7oLCW/view?usp=drive_link
+csr https://drive.google.com/file/d/1DH61PxRBg9IMfc10Cg5n8LSQAOgIAwWr/view?usp=drive_link
+ngo https://drive.google.com/file/d/1T-AJ-wW_V_5iP3ODKrPOBMOaj3LCKAyt/view?usp=drive_link
+gpm https://pmalliance.ru/2022/12/13/2022-award-winners-announced/
+ess	https://gleb.li/pub/%D0%A1%D0%BE%D1%86%D0%B8%D0%B0%D0%B
+pub	https://gleb.li/pub/%D0%A1%D0%BE%D1%86%D0%B8%D0%B0%D0%B
+glebleee https://t.me/glebleee
+geekteachers http://geekteachers.ru
+medium https://glebleee.medium.com/
+projects https://stepik.org/course/55889/promo
+speakers https://stepik.org/course/55838/promo
