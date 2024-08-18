@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>gleb.li</title>
@@ -15,7 +15,7 @@
   var position = document.body.getBoundingClientRect().top;
   var menu = document.getElementsByClassName('menu');
   
-  // console.log(position);
+  console.log('github');
   
   if (position < -20 && !menu[0].classList.contains('hidden')) {menu[0].classList.add('hidden');}
   else if (menu[0].classList.contains('hidden') && position > -20) {menu[0].classList.remove('hidden');}
