@@ -16,10 +16,12 @@ fetch('/nk/urls.md')
             if (key && url) {
                 mappings[key.trim()] = url.trim();
             }
+            console.log(key, url)
         });
 
         // Get the last part of the URL path
         const path = window.location.pathname.split('/').filter(Boolean).pop();
+        console.log(path)
 
         // Check if the path exists in the mappings and redirect
         if (path in mappings) {
