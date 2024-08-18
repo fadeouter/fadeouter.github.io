@@ -1,5 +1,5 @@
 // Fetch the content of the 'urls.md' file
-fetch('urls.md')
+fetch('/urls.md')
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
