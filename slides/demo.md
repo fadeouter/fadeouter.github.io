@@ -176,7 +176,7 @@ an ex-teacher and social entrepreneur in edtech. I have run several innovative s
 I put my experience in data visualization and information design into this service. While it is just a pet project, I use this service in my workshops and other cases.
 
 
-![](public/gleb.jpg#circled)
+![](slides/public/gleb.jpg#circled)
 
 ---
 
