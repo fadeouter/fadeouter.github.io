@@ -272,13 +272,13 @@ function slideNextRect(event) {
     const boundingRect = slideElement.getBoundingClientRect();
     const clickX = event.clientX - boundingRect.left;
     const halfWidth = boundingRect.width / 2;
-}
+
 
 if (clickX <= halfWidth) {
     toggleSlide(-1); // назад
 } else {
     toggleSlide(1); // вперёд
-}
+}}
 
 function toggleSlideSize() {
     document.body.classList.toggle('toggleSlideSize');
