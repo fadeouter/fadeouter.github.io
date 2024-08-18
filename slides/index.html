@@ -2,7 +2,6 @@
 <html class="no-js" lang="en">
 
 <head>
-    <!-- Meta tags and SEO optimization -->
     <meta property="og:title" content="Slides" />
     <meta property="og:site_name" content="Slides" />
     <meta property="og:url" content="https://gleb.li/slides/" />
@@ -26,7 +25,7 @@
     <script src="../_assets/jspdf.min.js"></script>
     <script src="../_assets/html2canvas.min.js" async defer></script>
     <script src="../_assets/qrcode.min.js"></script>
-    <script src="main.js" defer></script> <!-- Separate JS into main.js -->
+    <script src="main.js" defer></script>
 </head>
 
 <style>
@@ -999,7 +998,6 @@ nav, .nav-submenu {
 
 <body>
 
-    <!-- Navigation -->
     <nav id="nav" class="nav">
         <div class="nav-container">
             <span class="glebli"><a href="/" class="nav-button">gleb.li</a> / <span class="glebli-name">slides</span> </span>
@@ -1037,10 +1035,8 @@ nav, .nav-submenu {
         </div>
     </nav>
 
-    <!-- Section for Slides Container -->
     <section class="slides" id="slides-container"></section>
 
-    <!-- Section for Text Input -->
     <section class="text">
         <textarea oninput="genSlides();" onclick="scrollToSlide();" id="md"># Slides
 ##### Create a presentation as you type 👌</textarea>
