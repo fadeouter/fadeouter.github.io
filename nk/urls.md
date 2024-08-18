@@ -4,8 +4,8 @@ business https://drive.google.com/file/d/10DJZJv2K0fonf4nkLd_n22qnOux7oLCW/view?
 csr https://drive.google.com/file/d/1DH61PxRBg9IMfc10Cg5n8LSQAOgIAwWr/view?usp=drive_link
 ngo https://drive.google.com/file/d/1T-AJ-wW_V_5iP3ODKrPOBMOaj3LCKAyt/view?usp=drive_link
 gpm https://pmalliance.ru/2022/12/13/2022-award-winners-announced/
-ess	https://gleb.li/pub/%D0%A1%D0%BE%D1%86%D0%B8%D0%B0%D0%B
-pub	https://gleb.li/pub/%D0%A1%D0%BE%D1%86%D0%B8%D0%B0%D0%B
+ess https://gleb.li/pub/%D0%A1%D0%BE%D1%86%D0%B8%D0%B0%D0%B
+pub https://gleb.li/pub/%D0%A1%D0%BE%D1%86%D0%B8%D0%B0%D0%B
 glebleee https://t.me/glebleee
 geekteachers http://geekteachers.ru
 medium https://glebleee.medium.com/
