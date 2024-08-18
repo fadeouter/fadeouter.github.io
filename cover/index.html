@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru">
+
+<head>
+    <meta property="og:title" content="Cover" />
+    <meta property="og:site_name" content="Cover" />
+    <meta property="og:url" content="https://gleb.li/cover/" />
+    <meta property="og:description" content="Создайте обложку для вашего канала или группы" />
+    <meta property="og:type" content="product" />
+    <meta property="og:image" content="https://gleb.li/cover/card.png" />
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cover — генератор обложки для мессенджера</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="icon.png" />
+
+    <link rel="stylesheet" href="../_assets/fonts/fonts.css">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html.scaled {
+            font-size: 12px !important;
+        }
+
+        body {
+            font-family: Manrope, -apple-system, BlinkMacSystemFont, 'FreeSans', 'Helvetica Neue', sans-serif;
+            overflow-x: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto 14rem;
+            grid-template-areas:
+                "title"
+                "canvas"
+                "nav";
+        }
+
+        @media (orientation: portrait), (max-width: 880px) {
+            html {
+                font-size: 1vw;
+            }
+
+            nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100vw;
+            }
+
+            .canvas {
+                padding-bottom: 18rem !important;
+            }
+        }
+
+        @media (orientation: landscape) {
+            html {
+                font-size: 1vh;
+            }
+
+            body {
+                grid-template-columns: 100rem auto;
+                grid-template-rows: 1fr 3fr;
+                grid-template-areas:
+                    "canvas title"
+                    "canvas nav"
+            }
+
+            .title {
+                align-self: start !important;
+                margin-bottom: 3rem !important;
+            }
+
+            nav {
+                position: relative;
+                justify-content: start !important;
+                background: transparent !important;
+                border: none !important;
+                flex-wrap: wrap !important;
+                align-content: baseline !important;
+            }
+
+            .button {
+                order: 2
+            }
+
+            .randomColor {
+                order: 1
+            }
+        }
+
+        @media (orientation: landscape) and (max-width: 880px) {
+
+            html {
+                font-size: 0.5vw;
+            }
+        }
+
+
+        .canvas {
+            grid-area: canvas;
+            align-self: start;
+        }
+
+        .bold {
+            height: 90rem;
+            width: 90rem;
+            background: rgb(172, 29, 190);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+        }
+
+        .bold:hover {
+            background: radial-gradient(transparent 70%, rgba(0.1, 0.1, 0.1, 0.1) 70.5%);
+        }
+
+        @media (orientation: portrait) {
+            .bold {
+            background: radial-gradient(transparent 70%, rgba(0.1, 0.1, 0.1, 0.1) 70.5%);
+            }
+        }
+
+
+        .rect {
+            background-color: transparent;
+            align-self: center;
+            padding: 0;
+            padding: 0;
+            line-height: 1.15;
+            font-size: 10rem;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.2em;
+        }
+
+        .bold span {
+            padding: 0;
+            font-weight: bolder;
+            color: white;
+            display: inline;
+            background-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .bold span:focus {
+            outline: solid 1px transparent;
+        }
+
+        section {
+            padding: 5rem;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            flex-wrap: nowrap;
+            align-items: center;
+            align-content: center;
+            padding: 0;
+            line-height: 1;
+            background-color: #ffffff;
+            /* box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1); */
+            border-top: #b3b3b3 0.5px solid;
+            flex-basis: 100%;
+            padding: 0 1rem;
+            width: 100%;
+            height: 14rem;
+            background-color: #f9f9f9;
+            color: #505050;
+            grid-area: nav;
+        }
+
+        .button span {
+            font-size: 3rem;
+        }
+
+        span.icon {
+            margin-bottom: 0.15em;
+            font-size: 6.5em;
+        }
+
+        .button {
+            text-align: center;
+            width: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0 4rem;
+            background-position: center;
+        }
+
+        .button {
+            position: relative;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+            user-select: none;
+        }
+
+        .button:hover {
+            color: #007AFF;
+        }
+
+        .button:active {
+            color: #007AFF;
+        }
+
+        /*
+        .button:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, rgb(82, 20, 90) 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(8, 8);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.7s;
+        }
+
+        .button:active:after {
+            transform: scale(0, 0);
+            opacity: .2;
+            transition: 0s;
+        }
+
+*/
+        .badge {
+            width: 3em;
+            height: 3em;
+            border-radius: 50%;
+            background-color: #aaaaaa;
+            position: absolute;
+            top: 2em;
+            right: 6em;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 7rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+        
+        h1 a {
+        	text-decoration: none;
+        	color: black;
+        	font-weight: normal;
+        	border-bottom: 0.15em solid rgba(128, 128, 128, 0.12);
+            height:1.35em;
+            display: inline-block;
+        }
+        
+        p {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            color: #505050;
+            max-width: 70vw;
+            padding: 0;
+        }
+
+        .title {
+            grid-area: title;
+            padding-bottom: 0;
+            align-self: end;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section class="title">
+        <h1><a href="/" class="link">gleb.li</a>&nbsp;<span style="font-weight:normal">/</span>&nbsp;cover</h1>
+        <p>Создайте обложку для мессенджера из текста и эмоджи.</p>
+    </section>
+
+
+    <section class="canvas c">
+        <div class="bold c" id="bold">
+            <div class="rect c">
+                <span class="text c" contentEditable="true">Пиши тут 👋</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="additional-controls">
+        <div class="checkbox" onclick="changeLook();">
+            <span>Сменить тему</span>
+        </div>
+    </section> -->
+
+    <nav class="controls">
+        <div class="return button" onclick="backColor();">
+            <span class="icon icon-restart">⏮️</span>
+            <div class="badge"></div>
+            <span>Вернуть цвет</span>
+        </div>
+        <div class="randomColor button" id="color" onclick="randomHsl();">
+            <span class="icon icon-synchronize">🔄</span>
+            <span>Новый цвет</span>
+        </div>
+        <div class="download button" id="download">
+            <span class="icon icon-download">🔽</span>
+            <span>Скачать</span>
+        </div>
+    </nav>
+
+    <script>
+        function randomHsl() {
+            var oldColor = localStorage.getItem('color')
+            localStorage.setItem('oldcolor', oldColor)
+            document.querySelector('.badge').style.backgroundColor = oldColor;
+
+            var newColor = 'hsl(' + (Math.random() * 360) + ', ' + ((Math.random() * 70) + 20) + '%, 60%)';
+            document.querySelector('.bold').style.backgroundColor = newColor;
+
+            document.head.insertAdjacentHTML("beforeend", '<style>.link:hover {border-bottom-color: ' + newColor + ';</style>')
+
+            localStorage.setItem('color', newColor);
+        }
+
+        function backColor() {
+            var oldColor = localStorage.getItem('oldcolor')
+            localStorage.setItem('color', oldColor);
+            document.querySelector('.bold').style.backgroundColor = oldColor;
+        }
+
+
+        document.addEventListener('DOMContentLoaded', randomHsl);
+
+
+        function placeCaretAtEnd(el) {
+            el.focus();
+            if (typeof window.getSelection != "undefined" &&
+                typeof document.createRange != "undefined") {
+                var range = document.createRange();
+                range.selectNodeContents(el);
+                range.collapse(false);
+                var sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+            } else if (typeof document.body.createTextRange != "undefined") {
+                var textRange = document.body.createTextRange();
+                textRange.moveToElementText(el);
+                textRange.collapse(false);
+                textRange.select();
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', adaptiveTypography);
+        //      document.addEventListener('keyup', adaptiveTypography);
+        document.addEventListener('input', adaptiveTypography);
+
+        newSize = 16
+
+        function adaptiveTypography() {
+
+            var canvas = document.querySelector('.canvas')
+            var rect = document.querySelector('.rect')
+            var text = document.querySelector('.text')
+            var ttt = text.innerText
+            var rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+            var n = Array.from(ttt).length;
+
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            
+            async function changeSize() {
+
+                var canvasWidth = canvas.clientWidth
+                var rectWidth = rect.clientWidth
+                var textWidth = text.offsetWidth
+                var trRatio = textWidth / canvasWidth
+                var ratio = Math.round((canvasWidth / textWidth) * 1000) / 1000
+                var textWidthRem = textWidth / rem
+
+                if (n < 6) {
+                //  newSize = ((23/n)*1.2) + 10; если делаем рамку
+                    newSize = ((40/n)*1.2) + 10;
+                } else if (n > 5 && n < 11) {
+                    newSize = (2.5 * ratio) + 10;
+                }
+                else if (n > 10) {
+                    newSize = (1.5 * ratio - (n / 10) * 0.5) + 10;
+                } 
+
+                console.log(n, newSize)
+
+                // while (trRatio > .80) {
+                //     x = x - 1;
+                //     newSize = (2 * ratio - (n / 10) * 0.5) + x;
+
+                //     rect.style.fontSize = newSize + 'rem';
+                //     await sleep(100);
+                //     var textWidth = text.offsetWidth
+                //     var textWidthRem = textWidth / rem
+
+                //     trRatio = textWidth / canvasWidth
+                //     console.log('await', trRatio, newSize);
+                //     if (trRatio < .8) {
+                //         console.log('await', trRatio, newSize);
+                //         break;
+                //     }
+                // }
+                // console.log(newSize)
+
+                rect.style.fontSize = newSize + 'rem';
+                var textWidth = text.offsetWidth
+                var textWidthRem = textWidth / rem
+
+                if ((n > 10) && (textWidth > 0)) {
+                     rect.style.maxWidth = 'calc(' + textWidthRem + 'rem + 1rem + 1em)';
+                 }
+
+            }
+
+            changeSize();
+            changeSize(); //повторение неслучайно
+
+            //       console.log(text);
+            //       console.log(n + 'n');
+
+            // не теряем фокус при удалении всех символов
+            var theText = text.innerHTML
+            if (n === 0) {
+                placeCaretAtEnd(document.querySelector('.text'));
+            } 
+
+        };
+
+        document.getElementById('download').addEventListener('click', function () {
+            var root = document.documentElement;
+            var theText = document.querySelector('.text').textContent
+            var theText = theText.slice(0, 25)
+            root.classList.add('scaled');
+            window.scrollTo(0, 0);
+            html2canvas(document.querySelector('.bold'), {
+                scale: 1
+            }).then(function (canvas) {
+                console.log(canvas);
+                saveAs(canvas.toDataURL(), theText + '.png');
+            });
+            root.classList.remove('scaled');
+        });
+
+
+        function saveAs(uri, filename) {
+            var link = document.createElement('a');
+            if (typeof link.download === 'string') {
+                link.href = uri;
+                link.download = filename;
+                //Firefox requires the link to be in the body
+                document.body.appendChild(link);
+                //simulate click
+                link.click();
+                //remove the link when done
+                document.body.removeChild(link);
+            } else {
+                window.open(uri);
+            }
+        }
+    </script>
+
+
+
+    <!-- Matomo -->
+    <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//gleb.li/a/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d = document,
+                g = d.createElement('script'),
+                s = d.getElementsByTagName('script')[0];
+            g.type = 'text/javascript';
+            g.async = true;
+            g.defer = true;
+            g.src = u + 'matomo.js';
+            s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org/",
+            "@type": "WebSite",
+            "name": "Cover",
+            "url": "https://gleb.li/cover/",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "{search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+    </script>
+
+    <script src="../_assets/html2canvas.min.js" async defer></script>
+</body>
+
+</html>
+
+<!--
+
+#fdcb5c
+#fd8d32
+#d10869
+#a307ba
+#3897f0
+#70c050
+#111111
+
+
+-->

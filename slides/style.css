@@ -1,0 +1,821 @@
+/* normalize */
+
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
+
+pre,
+code,
+kbd,
+samp {
+    font-family: monospace, monospace;
+    font-size: 1em;
+}
+
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+
+img {
+    border-style: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+[type="checkbox"],
+[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+}
+
+
+
+
+
+
+
+/* main */
+
+body {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    font-size: 1.2vw;
+    color: #222222;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+}
+
+#slides.Elegant h1,
+#slides.Elegant h2,
+#slides.Elegant h3,
+.theme-preview-title.Elegant {
+    font-family: 'PT Serif', sans-serif;
+}
+
+#slides.Elegant h4,
+#slides.Elegant h5,
+#slides.Elegant h6,
+#slides.Elegant .slide {
+    font-weight: normal;
+    font-family: 'PT Sans', sans-serif !important;
+}
+
+#slides.Wide .slide,
+.theme-preview.Wide {
+    font-family: 'Raleway', sans-serif;
+}
+
+#slides.Compact .slide,
+.theme-preview.Compact {
+    font-family: 'PT Sans', sans-serif;
+}
+
+
+
+/* MD tweaks  */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 0.25em;
+    font-weight: bolder;
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.25em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5 {
+    font-size: 1em;
+}
+
+h6 {
+    font-size: 0.8em;
+}
+
+p {
+    /*  display: flex;
+    flex-direction: column;
+    align-items: start; */
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
+    font-size: 0.8em;
+}
+
+a {
+    color: #222
+}
+
+p,
+ul,
+ol,
+code,
+table,
+input[type=checkbox] {
+    font-size: 1em;
+    line-height: 1.1;
+    max-height: 85%;
+}
+
+li p {
+    font-size: 0.8em;
+}
+
+blockquote {
+    margin: 0;
+    padding: 0 0.5em;
+    border: 1px solid #cccccc;
+    border-left-width: 0.3em;
+}
+
+blockquote p {
+    margin: 0.25em 0;
+}
+
+ul {
+    padding-left: 1em;
+    margin: 1em 0;
+}
+
+ol {
+    padding-left: 1.25em
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+li ul {
+    margin-top: 0.5em;
+    font-size: 0.8em;
+}
+
+::marker {
+    font-weight: bold;
+}
+
+table,
+td,
+tr {
+    border: 1px solid #cccccc;
+}
+
+
+#slides img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: 100%;
+    min-width: 1.8em;
+    min-height: 3.4em;
+    object-fit: contain;
+    object-position: top;
+    padding: 0;
+}
+
+code, pre, kbd, samp {
+    display: inline-block;
+    white-space: pre-wrap;
+    padding: 0.1em 0.5em;
+    font-family: monospace;
+    background: rgba(128,128,128,0.3);
+    border-radius: 0.5em;
+    margin: 0.4em 0;
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+iframe {
+    height: 100%;
+    width: 100%;
+}
+
+
+
+/* блоки */
+
+.block {
+    display: inline-block;
+    padding: 0 1.5em 0 0;
+    max-height: 73%;
+    margin-bottom: 0.5em;
+    font-size: 1em;
+}
+
+.block1,
+.block-title {
+    width: 100%;
+    padding: 0;
+    display: block;
+    margin-bottom: 1.15em;
+}
+
+.block-title p {
+    margin: 0 0 0.15em;
+}
+
+/* воркэраунд для проблемы с попаданием в 1 блок не элементов заголовка */
+.block1 *:nth-child(3) {
+    margin-top: 1.15em;
+}
+
+/* .block2,
+.block3 {
+    max-width: 60%;
+} */
+
+.last-block {
+    max-width: 90%;
+}
+
+.block:not(:first-child) {
+    flex: 1;
+}
+
+.block p:first-child {
+    margin-top: 0;
+}
+
+.block-content {
+    height: 74%;
+    width: 90%;
+}
+
+.block-content p {
+    display: flex;
+    max-height: 100%;
+    flex-direction: column;
+}
+
+.block-content p:first-child {
+    margin: 0;
+}
+
+.block-single {
+    height: 100%;
+    max-height: 100%;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding-right: 0;
+    margin-bottom: 0;
+}
+
+.block-single * {
+    max-width: 100%;
+}
+
+.block-single h1,
+.block-single h2,
+.block-single h3 {
+    width: 100%;
+}
+
+.block-single p img {
+    width: auto;
+}
+
+.noTitle {
+    width: 100%;
+}
+
+.noTitle img {
+    align-self: center;
+}
+
+
+
+
+
+/* интерфейс */
+
+body {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 3.5vw auto;
+    grid-template-areas:
+        "nav nav"
+        "text slides";
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.text {
+    margin: 0;
+    grid-area: text;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 2em 10%;
+}
+
+#slides {
+    grid-area: slides;
+    height: calc(100vh - 3.5vw);
+    margin: 0;
+    padding-top: 2em;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #f8f9fa;
+    border-left: 1px solid #e5e5e5;
+    display: block;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    border: 1px solid #d7d7d7;
+    padding: 1em;
+}
+
+#nav {
+    grid-area: nav;
+}
+
+nav {
+    font-size: 1.2em;
+    z-index: 1000;
+    background: white;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0 2%;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    height: 3.5vw;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.nav-settings {
+    position: absolute;
+    top: 3.5vw;
+    border-bottom: 1px solid #e5e5e5;
+    justify-content: center;
+    left: 0;
+    display: none;
+}
+
+.settings-button {
+    height: 1em;
+    width: 1em;
+    background-image: linear-gradient(to bottom, #222, #222 15%, transparent 15%, transparent 43%, #222 43%, #222 57%, transparent 57%, transparent 85%, #222 85%);
+    /* background-color: #222;
+    background-image: linear-gradient(to bottom, transparent, transparent 15%, white 15%, white 43%, transparent 43%, transparent 57%, white 57%, white 85%, transparent 85%);  */
+    cursor: pointer;
+}
+
+.settings-button:hover {
+    opacity: 0.8;
+}
+
+.theme-button {
+    min-width: 15vw;
+    justify-content: center;
+}
+
+body.settings .nav-settings,
+.theme-button:hover+.nav-settings,
+.nav-settings:hover {
+    display: flex;
+    /* transition: 0.5s cubic-bezier(1,0,1,0) all; */
+}
+
+
+@media (orientation: portrait) {
+
+    body {
+        overflow: hidden;
+        height: 100%;
+        grid-template-columns: auto;
+        grid-template-rows: 7.5vw 1.2fr 0.8fr;
+        grid-template-areas:
+            "nav"
+            "slides"
+            "text";
+    }
+
+    #slides {
+        height: calc(60vh - 4.5vw);
+    }
+
+    nav {
+        font-size: 3vw;
+        height: 7vw;
+    }
+
+    .nav-settings {
+        top: 7vw;
+    }
+
+}
+
+
+
+/* навигация */
+
+.nav-help {
+    justify-self: start;
+}
+
+.nav-settings {
+    justify-self: end;
+}
+
+.nav-present {
+    justify-self: end;
+}
+
+.logo-hidden {
+    display: none;
+}
+
+.logo-visible:hover+.logo-hidden,
+.logo-hidden:hover {
+    display: inline;
+    cursor: pointer;
+}
+
+
+nav>div {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+nav p,
+nav a {
+    text-decoration: none;
+    border-bottom: 0.25em solid transparent;
+    color: #222222;
+    margin: 0 1em;
+    font-weight: 900;
+    font-size: 0.8em;
+    height: 1.25em;
+    cursor: pointer;
+    max-height: none;
+    height: 1.25em;
+}
+
+nav p:hover,
+nav a:hover,
+.nav-present p,
+.nav-present a {
+    border-bottom: 0.25em solid #ffec83;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-weight: 900;
+}
+
+.logo * {
+    margin: 0;
+    font-size: 1em;
+    border: none;
+}
+
+.dropdown-wrapper {
+    background-color: white;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-hidden {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    padding: 0.25em 0.5em;
+    left: 0;
+    z-index: 1;
+}
+
+.dropdown-wrapper:hover .dropdown-hidden,
+.dropdown-hidden:hover {
+    display: block;
+}
+
+.theme-toselect {
+    font-size: 0.9em;
+    font-weight: bolder;
+}
+
+.theme-color-selector {
+    margin-right: 1em;
+}
+
+.theme-color-selector p {
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    margin: 0 1em 0 0;
+}
+
+.theme-color-selector-white {
+    background-color: white !important;
+    border: 1px solid #ccc !important;
+}
+
+.theme-color-selector-black {
+    background-color: rgb(20, 20, 20);
+    border: 1px solid #2e2e2e !important;
+
+}
+
+
+
+/* слайды */
+
+.wrapper {
+    display: flex;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide {
+    padding: 1em 1.5em;
+    border: 1px solid #dbdbdb;
+    background-color: white;
+    margin: 0;
+    font-size: 0.8em;
+    width: calc(2 * 17.95em);
+    height: 20.2em;
+    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 0 4px #dbdbdb;
+}
+
+.wrapper:last-child {
+    padding-bottom: 30vh
+}
+
+
+.download {
+    align-self: flex-end;
+    width: 1.25em;
+    height: 1.25em;
+    margin-left: 0.5em;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0.2;
+}
+
+.wrapper:hover .download {
+    visibility: visible;
+}
+
+.download:hover {
+    opacity: 1;
+}
+
+.download:after {
+    content: 'скачать';
+    visibility: hidden;
+}
+
+.download:hover:after,
+.download:after:hover {
+    visibility: visible;
+}
+
+/* present */
+
+body.present {
+    display: block;
+    padding: 0;
+}
+
+body.present .text {
+    display: none;
+}
+
+@media (min-aspect-ratio: 16/9) {
+    body.present .slide {
+        font-size: calc(100vh / 20);
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    body.present .slide {
+        font-size: calc(100vw / 35);
+    }
+}
+
+body.present #slides {
+    margin: 0 0 0 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    border: none;
+}
+
+body.present nav {
+    opacity: 0;
+    position: absolute;
+}
+
+body.present nav:hover {
+    opacity: 1;
+}
+
+body.present .slide {
+    display: none;
+    user-select: none;
+    box-shadow: none !important;
+    border: none !important;
+    user-select: none;
+}
+
+body.present .wrapper {
+    margin: 0 auto !important;
+}
+
+body.present .presented {
+    display: flex
+}
+
+body.present,
+body.present #slides {
+    background-color: black;
+}
+
+body.present .wrapper:last-child {
+    padding-bottom: 0
+}
+
+.onpresent {
+    display: none;
+}
+
+body.present .onpresent {
+    display: block !important;
+}
+
+body.present .notonpresent,
+body.present .download {
+    display: none;
+}
+
+
+@media (orientation: portrait) {
+
+    .slide {
+        font-size: 1.4em;
+    }
+
+}
+
+@media (orientation: portrait) and (max-width: 480px) {
+
+    .slide {
+        font-size: 1.85em;
+    }
+
+}
+
+#history {
+    position: relative;
+    font-size: 9px;
+    width: 35%;
+    background: white;
+    padding: 1em;
+    display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    z-index: 111111;
+}
+
+.history-item {
+    width: 100%;
+}
+
+
+
+/* темы */
+
+body.dark,
+body.dark .slide,
+body.dark nav,
+body.dark nav p,
+body.dark nav a,
+body.dark a,
+body.dark textarea {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border-color: #2e2e2e;
+}
+
+body.dark nav p:hover,
+body.dark nav a:hover {
+    border-color: #b8a645;
+}
+
+body.dark #slides {
+    background-color: #222222;
+    border-color: #2e2e2e;
+}
+
+body.dark .slide {
+    box-shadow: 0 0 4px #0f0f0f;
+    border-color: #1c1b1b;
+}
+
+body.dark .settings-button {
+    background-image: linear-gradient(to bottom, #d4d4d4, #d4d4d4 15%, transparent 15%, transparent 43%, #d4d4d4 43%, #d4d4d4 57%, transparent 57%, transparent 85%, #d4d4d4 85%);
+}
+
+.scaled {
+    border: none;
+    box-shadow: none;
+    font-size: 53.5px;
+    display: flex !important;
+}
+
+body.dark .slide.scaled {
+    box-shadow: 0 0 4px #222222;
+    box-shadow: none;
+}
+
+.scaled a {
+    text-decoration: none;
+}

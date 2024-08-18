@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>gleb.li</title>
+  <link rel="icon" type="image/png" href="icon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300..700&display=swap" rel="stylesheet">
+  
+  <script>
+  
+  window.onscroll = function (e) {  
+  
+  var position = document.body.getBoundingClientRect().top;
+  var menu = document.getElementsByClassName('menu');
+  
+  console.log(position);
+  
+  if (position < -20 && !menu[0].classList.contains('hidden')) {menu[0].classList.add('hidden');}
+  else if (menu[0].classList.contains('hidden') && position > -20) {menu[0].classList.remove('hidden');}
+  
+} 
+  
+  
+  </script>
+  
+  <style>
+  body {
+      font-family: 'Overpass Mono', monospace;
+      margin: 0;
+      padding: 0;
+      }
+      
+  .content {
+      padding: 12vh 6vw; 
+      white-space: pre;
+      line-height:1.5; 
+      font-size: 16px
+      }
+  
+  	  .content:first-child {
+  	  padding: 16vh 6vw;
+  	  }
+  	  .content:last-of-type {
+  	  padding-bottom: 20vh;
+  	  }
+  
+  a {
+    font-weight: bold; 
+    color: black; 
+    border-bottom: 2px solid black; 
+    text-decoration:none;
+    }
+  
+  .culturaltrends {
+      background-color: #ffd3d3;
+	    background-image: url(gif.gif);
+	    background-size: cover;
+	    border-radius: 1em;
+	    padding: 0 0.2em;
+	    color: white;
+	    font-weight: 700;
+  }
+  
+  
+  .project {
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+    /* font-weight: bold;
+    border-bottom: 2px dashed #777; */
+  }
+
+  .project:hover {
+    cursor: pointer;
+  }
+    
+  .tooltip {
+	  visibility: hidden;
+	  position: absolute;
+	  background-color: white;
+	  /* padding: 0.5em;
+	  border-radius: 0.5em; */
+	  top: 1.5em;
+	  left: -0.5em;
+	  z-index: 1;
+  }
+  
+  .project:hover,
+  .project:hover .tooltip,
+  .tooltip:hover {
+    visibility: visible;
+  }
+  
+    .menu {
+    position: fixed;
+    bottom: 5vh;
+    width: 100%;
+  }
+  
+    .menu div {
+	  background: white;
+	  width: 85%;
+	  border-radius: 1000px;
+	  background: #ffd3d3;
+	  padding: 2em 5%;
+	  margin: 0 auto;
+	  display: flex;
+	  justify-content: space-between;
+  }
+  
+    .menu .tooltip {
+	  top: auto;
+	  bottom: 2em;
+	  width: auto;
+	  padding: 1em 1.5em 0.5em;
+	  border-radius: 1000px;
+	  left: -2em;
+	  line-height: 1;
+    white-space: pre;
+  }
+  
+  .hidden {
+  opacity: 0;
+  transition:0.3s ease all;
+  }
+  
+  @media (orientation:portrait) {
+  	.content {
+  	  font-size: 3.1vw; 
+  	  width: auto !important;
+  	  white-space: pre-line;
+  	  }
+  	  .content:first-child {
+  	  padding: 10vh 6vw 16vh;
+  	  }
+  	  .content:last-of-type {
+  	  padding-bottom: 30vh;
+  	  }
+  	  .tooltip {
+  	  left: -5.5em;
+  	  }
+  	  .tooltip img {
+  	  height: auto;
+  	  max-height: 80vw;
+  	  }
+    .menu div {
+	padding: 2em 1em;
+	border-radius: 1em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	font-size: 3vw;
+	padding-bottom:1.5em;
+}
+  .menu div * {
+  width: auto;
+	display: inline-flex;
+	margin: 0 5% 2.5% 5%;
+  }
+  }
+  
+  </style>
+</head>
+<body>
+
+<div class="menu">
+<div>
+
+<a class="project" href="/slides">/slides<span class="tooltip">create a slide deck 
+on-the-go as you type</span></a>
+
+
+<a class="project" href="/cover">/cover<span class="tooltip">simple profile image generator 
+based on text and emoji</span></a>
+
+
+<a class="project" href="/poster">/poster&nbsp;ᵖᵈᶠ  <span class="tooltip">poster and a 1-page workbook
+on effective social program&nbsp;ʳᵘˢ</span></a>
+
+
+<a class="project" href="/canvas">/canvas<span class="tooltip">community canvas generator&nbsp;ʳᵘˢ</span></a>
+
+
+<span class="project" >/art<span class="tooltip">coming soon</span></span>
+
+<span>>&nbsp;<a class="project" href="https://collab.technology/">collab<span class="tooltip">my venture</span></a></span>
+
+</div>
+</div>
+
+<div class="content">  Hi! I am <span class="project" style="text-decoration-style: dashed; text-decoration-line: underline">Gleb Likhobabin<span class="tooltip"><img src="slides/public/gleb.jpg" style="height:50vh"></span></span>, 
+  a social entrepreneur who loves to blend 
+  social change with cutting-edge ❮tech❯ and <span class="culturaltrends">cultural trends</span>.
+	
+  I am a co-founder of the <a href="https://collab.technology/" target="_blank" class="regular"><span class="project">Collab</a><span class="tooltip"><img src="me.jpg" style="height:50vh"></span></span> team, 
+  where we help businesses use a human-centered 
+  approach for better customer experience and responsibility. 
+  We also build impactful social programs that are scalable and evidence-based.
+
+  I am an enthusiast of open-source products, 
+  a fan of theory of change, and an advocate for humanism. 
+  
+  Competencies: sustainability, theory of change, social impact,
+  app development, scalability, project management, digital transformation.</div><div class="content" style="background: #fcff9c;display:none;"></div>
+<div class="content" style="background: linear-gradient(#fcff9c,5%,#fff,#fff)">  W O R K 
+	
+	
+  <b>2020-now</b>  Co-founder at Collab, a union of creatives 
+  with impact in mind and humanity at heart. 
+  <a href="https://collab.technology/" target="_blank" class="regular">> become our client or just a friend!</a>
+	
+	
+  <b>2020-2022</b>  Leading author, then CEO at Strength of Community 
+  program and its products, like “RSA Game” or Community 
+  Diagnostics Tool. We helped build 600 school communities 
+  in two years, empowered 901,000 people and helped 
+  raise more than $2,500,000 for education. 
+  <a href="https://docs.google.com/presentation/d/1_UInjZoD9ATstrz8Sj__3vNVHQ0rUEuzv9wbiEYadxw/edit?usp=sharing" class="regular" target="_blank">> read our wonderful 2021-22 Impact Report!</a>
+	
+	
+  <b>2018-2020</b>  Co-founder and CTO at Geek Teachers, 
+  a prominent educational movement for empowering millennial 
+  teachers and a host for more than six education festivals
+  (think of it as a child of Coachella and BETT), with fellow
+  co-founders Mariia Plotkina and Arina Nuriakhmetova.
+	
+	
+  <b>2011-2018</b>  Teacher for children with disabilities.</div>
+<div class="content" style="background: linear-gradient(#fff,90%,#ff9afd)">  A C H I E V E M E N T S
+  
+  
+  <b>2018</b> — KIVO EdTech Startups Awards w/ Geek Teachers
+  
+  <b>2019</b> — Social Impact Award, «Internet 
+  for the Better World» nomination w/ Geek Teachers
+  
+  <b>2020</b> — HundrED: world's best education innovations 
+  w/ Geek Teachers
+  
+  <b>2021</b> — Bronze Stevie Awards w/ RSA Game
+  
+  <b>2021</b> — Green Project Management Awards w/ RSA Game
+  
+  <b>2022</b> — GPM360° certification based on P5 standard
+  w/ Collab (certified green project management team)</div>
+
+
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq    | [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//gleb.li/a/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</body>
+</html>
