@@ -1,12 +1,13 @@
+glebleee https://t.me/glebleee
+tg https://t.me/glebleee
+gpm https://pmalliance.ru/2022/12/13/2022-award-winners-announced/
 sia2023 https://docs.google.com/presentation/d/13UyugdXh6YIwnXDmIQUvvo_H0X5RXg0LxDgKLmpgF3E/edit?usp=sharing
-rsaimpactreport https://docs.google.com/presentation/d/1_UInjZoD9ATstrz8Sj__3vNVHQ0rUEuzv9wbiEYadxw/edit?usp=sharing
 business https://drive.google.com/file/d/10DJZJv2K0fonf4nkLd_n22qnOux7oLCW/view?usp=drive_link
 csr https://drive.google.com/file/d/1DH61PxRBg9IMfc10Cg5n8LSQAOgIAwWr/view?usp=drive_link
 ngo https://drive.google.com/file/d/1T-AJ-wW_V_5iP3ODKrPOBMOaj3LCKAyt/view?usp=drive_link
-gpm https://pmalliance.ru/2022/12/13/2022-award-winners-announced/
 ess https://gleb.li/pub/%D0%A1%D0%BE%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%E2%80%94%20%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9,%20%D0%BC%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%D0%B8%D1%80%D1%83%D0%B5%D0%BC%D1%8B%D0%B9,%20%D1%83%D1%81%D1%82%D0%BE%D0%B9%D1%87%D0%B8%D0%B2%D1%8B%D0%B9.pdf
 pub https://gleb.li/pub/%D0%A1%D0%BE%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%E2%80%94%20%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9,%20%D0%BC%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%D0%B8%D1%80%D1%83%D0%B5%D0%BC%D1%8B%D0%B9,%20%D1%83%D1%81%D1%82%D0%BE%D0%B9%D1%87%D0%B8%D0%B2%D1%8B%D0%B9.pdf
-glebleee https://t.me/glebleee
+rsaimpactreport https://docs.google.com/presentation/d/1_UInjZoD9ATstrz8Sj__3vNVHQ0rUEuzv9wbiEYadxw/edit?usp=sharing
 geekteachers http://geekteachers.ru
 medium https://glebleee.medium.com/
 projects https://stepik.org/course/55889/promo
