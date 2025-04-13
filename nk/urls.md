@@ -12,3 +12,4 @@ geekteachers http://geekteachers.ru
 medium https://glebleee.medium.com/
 projects https://stepik.org/course/55889/promo
 speakers https://stepik.org/course/55838/promo
+product https://gleb.li/pub/product%20approach_rus.pdf
