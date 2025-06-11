@@ -6,261 +6,260 @@
   <link rel="icon" type="image/png" href="icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300..700&display=swap" rel="stylesheet">
   
   <script>
-  
-  window.onscroll = function (e) {  
-  
-  var position = document.body.getBoundingClientRect().top;
-  var menu = document.getElementsByClassName('menu');
-  
-  console.log('github');
-  
-  if (position < -20 && !menu[0].classList.contains('hidden')) {menu[0].classList.add('hidden');}
-  else if (menu[0].classList.contains('hidden') && position > -20) {menu[0].classList.remove('hidden');}
-  
-} 
-  
-  
+    window.onscroll = function (e) {  
+      var position = document.body.getBoundingClientRect().top;
+      var menu = document.getElementsByClassName('menu');
+      
+      if (position < -20 && !menu[0].classList.contains('hidden')) {
+        menu[0].classList.add('hidden');
+      } else if (menu[0].classList.contains('hidden') && position > -20) {
+        menu[0].classList.remove('hidden');
+      }
+    } 
   </script>
   
   <style>
-  body {
+    body {
       font-family: 'Overpass Mono', monospace;
       margin: 0;
       padding: 0;
-      }
-      
-  .content {
-      padding: 12vh 6vw; 
-      white-space: pre;
-      line-height:1.5; 
-      font-size: 16px
-      }
-  
-  	  .content:first-child {
-  	  padding: 16vh 6vw;
-  	  }
-  	  .content:last-of-type {
-  	  padding-bottom: 20vh;
-  	  }
-  
-  a {
-    font-weight: bold; 
-    color: black; 
-    border-bottom: 2px solid black; 
-    text-decoration:none;
     }
-  
-  .culturaltrends {
-      background-color: #ffd3d3;
-	    background-image: url(gif.gif);
-	    background-size: cover;
-	    border-radius: 1em;
-	    padding: 0 0.2em;
-	    color: white;
-	    font-weight: 700;
-  }
-/*
-  .competency {
-      background-color: #fcff9c;
-	    border-radius: 1em;
-	    padding: 0.05rem 0.5rem;
-	    font-size: 0.95rem;
-  }
-  */
-  .project {
-    position: relative;
-    display: inline-block;
-    font-weight: 700;
-    /* font-weight: bold;
-    border-bottom: 2px dashed #777; */
-  }
+      
+    .content {
+      padding: 12vh 7.5vw; 
+      line-height: 1.5; 
+      font-size: 16px;
+    }
 
-  .project:hover {
-    cursor: pointer;
-  }
-    
-  .tooltip {
-	  visibility: hidden;
-	  position: absolute;
-	  background-color: white;
-	  /* padding: 0.5em;
-	  border-radius: 0.5em; */
-	  top: 1.5em;
-	  left: -0.5em;
-	  z-index: 1;
-  }
-  
-  .project:hover,
-  .project:hover .tooltip,
-  .tooltip:hover {
-    visibility: visible;
-  }
-  
+    .content:last-of-type {
+      padding-bottom: 20vh;
+    }
+
+    .content-work {
+      background: linear-gradient(#fcff9c, 5%, #fff, #fff);
+    }
+
+    .content-achievements {
+      background: linear-gradient(#fff, 90%, #ff9afd);
+    }
+
+    a {
+      font-weight: bold; 
+      color: black; 
+      border-bottom: 2px solid black; 
+      text-decoration: none;
+    }
+
+    .culturaltrends {
+      background-color: #ffd3d3;
+      background-image: url(gif.gif);
+      background-size: cover;
+      border-radius: 1em;
+      padding: 0 0.2em;
+      color: white;
+      font-weight: 700;
+    }
+
+    .project {
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+    }
+
+    .project:hover {
+      cursor: pointer;
+    }
+      
+    .tooltip {
+      visibility: hidden;
+      position: absolute;
+      background-color: white;
+      top: 1.5em;
+      left: -0.5em;
+      z-index: 1;
+    }
+
+    .project:hover,
+    .project:hover .tooltip,
+    .tooltip:hover {
+      visibility: visible;
+    }
+
     .menu {
-    position: fixed;
-    bottom: 5vh;
-    width: 100%;
-  }
-  
+      position: fixed;
+      bottom: 5vh;
+      width: 100%;
+    }
+
     .menu div {
-	  background: white;
-	  width: 85%;
-	  border-radius: 1000px;
-	  background: #ffd3d3;
-	  padding: 2em 5%;
-	  margin: 0 auto;
-	  display: flex;
-	  justify-content: space-between;
-  }
-  
+      background: #ffd3d3;
+      width: 85%;
+      border-radius: 1000px;
+      padding: 2em 5%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
     .menu .tooltip {
-	  top: auto;
-	  bottom: 2em;
-	  width: auto;
-	  padding: 1em 1.5em 0.5em;
-	  border-radius: 1000px;
-	  left: -2em;
-	  line-height: 1;
-    white-space: pre;
-  }
-  
-  .hidden {
-  opacity: 0;
-  transition:0.3s ease all;
-  }
-  
-  @media (orientation:portrait) {
-  	.content {
-  	  font-size: 3.1vw; 
-  	  width: auto !important;
-  	  white-space: pre-line;
-  	  }
-  	  .content:first-child {
-  	  padding: 10vh 6vw 16vh;
-  	  }
-  	  .content:last-of-type {
-  	  padding-bottom: 30vh;
-  	  }
-  	  .tooltip {
-  	  left: -5.5em;
-  	  }
-  	  .tooltip img {
-  	  height: auto;
-  	  max-height: 80vw;
-  	  }
-    .menu div {
-	padding: 2em 1em;
-	border-radius: 1em;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	font-size: 3vw;
-	padding-bottom:1.5em;
-}
-  .menu div * {
-  width: auto;
-	display: inline-flex;
-	margin: 0 5% 2.5% 5%;
-  }
-  }
-  
+      top: auto;
+      bottom: 2em;
+      width: auto;
+      padding: 1em 1.5em 0.5em;
+      border-radius: 1000px;
+      left: -2em;
+      line-height: 1;
+      white-space: pre;
+    }
+
+    .hidden {
+      opacity: 0;
+      transition: 0.3s ease all;
+    }
+
+    .h {
+      display: block;
+    }
+
+    @media (orientation: portrait) {
+      .content {
+        font-size: 3.1vw; 
+        width: auto !important;
+      }
+
+      .content:last-of-type {
+        padding-bottom: 30vh;
+      }
+
+      .tooltip {
+        left: -5.5em;
+      }
+
+      .tooltip img {
+        height: auto;
+        max-height: 80vw;
+      }
+
+      .menu div {
+        padding: 2em 1em;
+        border-radius: 1em;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        font-size: 3vw;
+        padding-bottom: 1.5em;
+      }
+
+      .menu div * {
+        width: auto;
+        display: inline-flex;
+        margin: 0 5% 2.5% 5%;
+      }
+
+      /* Hide sentence breaks on mobile */
+      .h {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
 
 <div class="menu">
-<div>
+  <div>
+    <a class="project" href="/slides">/slides<span class="tooltip">create a slide deck<br class="h">on-the-go as you type</span></a>
 
-<a class="project" href="/slides">/slides<span class="tooltip">create a slide deck 
-on-the-go as you type</span></a>
+    <a class="project" href="/cover">/cover<span class="tooltip">simple profile image generator<br class="h">based on text and emoji</span></a>
 
+    <a class="project" href="nk/ess">/poster&nbsp;ᵖᵈᶠ<span class="tooltip">poster and a 1-page workbook<br class="h">on effective social program&nbsp;ʳᵘˢ</span></a>
 
-<a class="project" href="/cover">/cover<span class="tooltip">simple profile image generator 
-based on text and emoji</span></a>
+    <a class="project" href="/canvas">/canvas<span class="tooltip">community canvas generator&nbsp;ʳᵘˢ</span></a>
 
+    <span class="project">/art<span class="tooltip">coming soon</span></span>
 
-<a class="project" href="nk/ess">/poster&nbsp;ᵖᵈᶠ  <span class="tooltip">poster and a 1-page workbook
-on effective social program&nbsp;ʳᵘˢ</span></a>
-
-
-<a class="project" href="/canvas">/canvas<span class="tooltip">community canvas generator&nbsp;ʳᵘˢ</span></a>
-
-
-<span class="project" >/art<span class="tooltip">coming soon</span></span>
-
-<span>>&nbsp;<a class="project" href="https://collab.technology/">collab<span class="tooltip">my venture</span></a></span>
-
-</div>
+    <span>>&nbsp;<a class="project" href="https://collab.technology/">collab<span class="tooltip">my venture</span></a></span>
+  </div>
 </div>
 
-<div class="content">  Hi! I am <span class="project" style="text-decoration-style: dashed; text-decoration-line: underline">Gleb Likhobabin<span class="tooltip"><img src="slides/public/gleb2.jpg" style="height:50vh"></span></span>, 
-  a social entrepreneur who loves to blend 
-  social change with cutting-edge ❮tech❯ and <span class="culturaltrends">cultural trends</span>.
-	
-  I am a co-founder at <a href="https://collab.technology/" target="_blank" class="regular"><span class="project">Collab</a></span>, a social change agency, 
-  where we help businesses use a human-centered approach 
-  for better customer experience and responsibility. 
-  We also build impactful social programs that are scalable and evidence-based.
+<div class="content">
+  Hi! I am <span class="project" style="text-decoration-style: dashed; text-decoration-line: underline">Gleb Likhobabin<span class="tooltip"><img src="slides/public/gleb2.jpg" style="height:50vh"></span></span>,<br class="h">
+  a social entrepreneur who loves to blend<br class="h">
+  social change with cutting-edge ❮tech❯ and <span class="culturaltrends">cultural&nbsp;trends</span>.<br><br>
 
-  I am an enthusiast of open-source products, 
-  a fan of theory of change, and an advocate for humanism. 
-  
-  Competencies: <span class="competency">sustainability</span>, <span class="competency">theory of change</span>, <span class="competency">product management</span>,
-  <span class="competency">social impact measurement</span>, <span class="competency">project management</span>, <span class="competency">digital transformation</span>.
-</div><div class="content" style="background: #fcff9c;display:none;"></div>
+  I am co-founder of <a href="https://collab.technology/" target="_blank" class="regular"><span class="project">Collab</span></a>, a social change agency<br class="h">
+  where we help businesses use a human-centered approach<br class="h">
+  for better customer experience and social responsibility.<br class="h">
+  We build impactful social programs that are scalable and evidence-based.<br><br>
 
+  I am an enthusiast of open-source products,<br class="h">
+  a fan of theory of change, and an advocate for humanism.<br><br>
 
-<div class="content" style="background: linear-gradient(#fcff9c,5%,#fff,#fff)">  W O R K 
-	
-	
-  <b>2020-now</b>  Co-founder at Collab, a union of creatives 
-  with impact in mind and humanity at heart. 
-  <a href="https://collab.technology/" target="_blank" class="regular">> become our client or just a friend!</a>
-	
-	
-  <b>2020-2022</b>  Leading author, then CEO at Strength of Community 
-  program and its products, like “RSA Game” or Community 
-  Diagnostics Tool. We helped build 600 school communities 
-  in two years, empowered 901,000 people and helped 
-  raise more than $2,500,000 for education. 
-  <a href="https://docs.google.com/presentation/d/1_UInjZoD9ATstrz8Sj__3vNVHQ0rUEuzv9wbiEYadxw/edit?usp=sharing" class="regular" target="_blank">> read our wonderful 2021-22 Impact Report!</a>
-	
-	
-  <b>2018-2020</b>  Co-founder and CTO at Geek Teachers, 
-  a prominent educational movement for empowering millennial 
-  teachers and a host for more than six education festivals
-  (think of it as a child of Coachella and BETT), with fellow
-  co-founders Mariia Plotkina and Arina Nuriakhmetova.
-	
-	
-  <b>2011-2018</b>  Teacher for children with disabilities.</div>
-<div class="content" style="background: linear-gradient(#fff,90%,#ff9afd)">  A C H I E V E M E N T S
-  
-  <b>2025</b> — Bronze Effie Awards (E+ Russia)
-  in two nominations w/ Collab
+  Competencies: sustainability, theory of change, product management,<br class="h">
+  social impact measurement, project management, digital transformation.
+</div>
 
-  <b>2025</b> — Member of the Project Alliance Association,
-  Russia (pmalliance.ru)
+<div class="content content-work">
+  W O R K<br><br>
 
-  <b>2023</b> — Speaker at Social Impact Award Summit
+  <b>2022-now</b> Co-founder of Collab, a union of creatives<br class="h">
+  with impact in mind and humanity at heart.<br class="h">
+  More than 10 projects completed over three years<br class="h">
+  and 830,000 beneficiaries reached through our work!<br class="h">
+  Co-leading it together with Alisa Sokolova and Asya Komkova.<br>
+  <a href="https://collab.technology/" target="_blank" class="regular">> become our client or just a friend!</a><br><br>
 
-  <b>2022</b> — GPM360° certification based on P5 standard
-  w/ Collab (certified green project management team)
-  
-  <b>2021</b> — Green Project Management Awards w/ RSA Game
+  <b>2020-2022</b> Leading author, manager, then CEO<br class="h">
+  of the Strength of Community program at Rybakov Foundation.<br class="h">
+  We helped build 600 school communities in two years,<br class="h">
+  empowered 901,000 people and attracted more than<br class="h">
+  $2,500,000 USD for education.<br>
+  <a href="https://docs.google.com/presentation/d/1_UInjZoD9ATstrz8Sj__3vNVHQ0rUEuzv9wbiEYadxw/edit?usp=sharing" class="regular" target="_blank">> read our wonderful 2021-22 Impact Report!</a><br><br>
 
-  <b>2021</b> — Bronze Stevie Awards w/ RSA Game
+  <b>2018-2020</b> Co-founder and CTO of Geek Teachers —<br class="h">
+  a prominent educational movement for empowering millennial<br class="h">
+  teachers and host of 6+ education festivals (think of it<br class="h">
+  as a child of Coachella and BETT), with fellow<br class="h">
+  co-founders Mariia Plotkina and Arina Nuriakhmetova.<br><br>
 
-  <b>2020</b> — HundrED: world's best education innovations 
-  w/ Geek Teachers
+  <b>2011-2018</b> Teacher for children with disabilities.
+</div>
 
-  <b>2019</b> — Social Impact Award, «Internet 
-  for the Better World» nomination w/ Geek Teachers
+<div class="content content-achievements">
+  A C H I E V E M E N T S<br><br>
 
-  <b>2018</b> — KIVO EdTech Startups Awards w/ Geek Teachers</div>
+  <b>2025</b> — Bronze Effie Awards (E+ Russia)<br class="h">
+  in two nominations w/ Collab<br><br>
+
+  <b>2025</b> — Bronze Silver Mercury w/ Collab<br><br>
+
+  <b>2025</b> — Member of the Project Management<br class="h">
+  Alliance Association, Russia (pmalliance.ru)<br><br>
+
+  <b>2023</b> — Speaker at Social Impact Award Summit<br><br>
+
+  <b>2023</b> — Silver Silver Mercury w/ Collab<br><br>
+
+  <b>2022</b> — GPM360° certification based on P5 standard<br class="h">
+  w/ Collab (certified green project management team)<br><br>
+
+  <b>2021</b> — Green Project Management Awards 
+  w/ Strength of Community<br><br>
+
+  <b>2021</b> — Bronze Stevie Awards w/ Strength of Community<br><br>
+
+  <b>2020</b> — HundrED: world's best education innovations<br class="h">
+  w/ Geek Teachers<br><br>
+
+  <b>2019</b> — Social Impact Award, "Internet<br class="h">
+  for the Better World" nomination w/ Geek Teachers<br><br>
+
+  <b>2018</b> — KIVO EdTech Startups Awards w/ Geek Teachers
+</div>
 
 </body>
 </html>
