@@ -13,3 +13,4 @@ medium https://glebleee.medium.com/
 projects https://stepik.org/course/55889/promo
 speakers https://stepik.org/course/55838/promo
 product https://gleb.li/pub/product%20approach_rus.pdf
+webrooms https://gleb.li/art/webrooms.html

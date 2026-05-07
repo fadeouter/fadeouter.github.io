@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webrooms</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Pixelated MS Sans Serif', Arial, sans-serif;
+      user-select: none;
+      background-color: #008080;
+      
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+    }
+
+    #desktop {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .window {
+      position: absolute;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .win98-progress {
+      width: 100%;
+      height: 18px;
+      box-sizing: border-box;
+      background: #c0c0c0;
+      border: inset 2px #ffffff;
+      position: relative;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    .win98-progress-bar {
+      height: 100%;
+      background: #000080;
+      width: 30%;
+      animation: loading-slide 1.2s infinite linear;
+    }
+
+    @keyframes loading-slide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(350%); }
+    }
+
+    .content-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: calc(100% - 30px);
+      text-align: center;
+      padding: 10px;
+    }
+
+    .buttons-row {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="desktop"></div>
+
+  <script>
+    // =========================================================================
+    // НАСТРОЙКИ ГРОМКОСТИ ЗВУКА (Меняй эти значения под себя)
+    // =========================================================================
+    const AUDIO_MASTER_VOLUME = 0.09; // Общая громкость эмбиента (от 0.0 до 1.0)
+    const AUDIO_HUM_VOLUME    = 1.0;  // Громкость низкого монотонного гула 
+    const AUDIO_NOISE_VOLUME  = 0.01;  // Громкость "белого шума/HDD"
+    // =========================================================================
+
+    // --- АУДИО ДВИЖОК (Web Audio API) ---
+    let audioCtx;
+    let ambientGain, humOsc, noiseSource, hddLFO;
+    let noiseBuffer;
+    let isAmbientPlaying = false;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Генерируем буфер белого шума 1 раз
+        const bufferSize = audioCtx.sampleRate * 2;
+        noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = Math.random() * 2 - 1;
+        }
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playSoftClick() {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = 'triangle'; // Мягкий тон
+      osc.frequency.setValueAtTime(310, audioCtx.currentTime);
+      
+      gain.gain.setValueAtTime(0, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.1);
+    }
+
+    function startAmbientSound() {
+      if (!audioCtx) return;
+      
+      // На всякий случай чистим старые ноды
+      stopAmbientSound();
+
+      ambientGain = audioCtx.createGain();
+      // Плавное нарастание громкости
+      ambientGain.gain.setValueAtTime(0, audioCtx.currentTime);
+      ambientGain.gain.linearRampToValueAtTime(AUDIO_MASTER_VOLUME, audioCtx.currentTime + 0.1);
+
+      // 1. Гудение трансформатора/старого ПК
+      humOsc = audioCtx.createOscillator();
+      humOsc.type = 'sawtooth';
+      humOsc.frequency.value = randomRange(45, 65); 
+      
+      const humFilter = audioCtx.createBiquadFilter();
+      humFilter.type = 'lowpass';
+      humFilter.frequency.value = randomRange(100, 250);
+
+      const humGainNode = audioCtx.createGain();
+      humGainNode.gain.value = AUDIO_HUM_VOLUME;
+
+      humOsc.connect(humFilter);
+      humFilter.connect(humGainNode);
+      humGainNode.connect(ambientGain);
+      humOsc.start();
+
+      // 2. Треск жесткого диска / Шум
+      noiseSource = audioCtx.createBufferSource();
+      noiseSource.buffer = noiseBuffer;
+      noiseSource.loop = true;
+
+      const noiseFilter = audioCtx.createBiquadFilter();
+      noiseFilter.type = 'bandpass';
+      noiseFilter.frequency.value = randomRange(800, 3000); 
+      noiseFilter.Q.value = randomRange(1, 4);
+
+      const noiseGainNode = audioCtx.createGain();
+      noiseGainNode.gain.value = AUDIO_NOISE_VOLUME;
+
+      // 3. Эффект "чтения данных"
+      hddLFO = audioCtx.createOscillator();
+      hddLFO.type = 'square';
+      hddLFO.frequency.value = randomRange(5, 20); 
+      const lfoGain = audioCtx.createGain();
+      lfoGain.gain.value = randomRange(200, 800); 
+      
+      hddLFO.connect(lfoGain);
+      lfoGain.connect(noiseFilter.frequency);
+      hddLFO.start();
+
+      noiseSource.connect(noiseFilter);
+      noiseFilter.connect(noiseGainNode);
+      noiseGainNode.connect(ambientGain);
+      noiseSource.start();
+
+      ambientGain.connect(audioCtx.destination);
+      isAmbientPlaying = true;
+    }
+
+    function stopAmbientSound() {
+      if (!audioCtx || !isAmbientPlaying || !ambientGain) return;
+
+      // Плавное затухание, чтобы не было "щелчков" при закрытии окна
+      ambientGain.gain.setValueAtTime(ambientGain.gain.value, audioCtx.currentTime);
+      ambientGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.1);
+
+      const stopTime = audioCtx.currentTime + 0.15;
+      if (humOsc) { humOsc.stop(stopTime); humOsc = null; }
+      if (noiseSource) { noiseSource.stop(stopTime); noiseSource = null; }
+      if (hddLFO) { hddLFO.stop(stopTime); hddLFO = null; }
+
+      isAmbientPlaying = false;
+    }
+
+    // --- ОСНОВНАЯ ЛОГИКА ИНТЕРФЕЙСА ---
+    const desktop = document.getElementById('desktop');
+    let globalZIndex = 10;
+
+    const baseColors = [
+      '#008080', '#3a6ea5', '#004040', '#7b92a2', 
+      '#556b2f', '#4682b4', '#808080', '#008000'
+    ];
+
+    const waitTexts = [
+      "Please wait...", 
+      "Entering...", 
+      "Processing...", 
+      "Stand by..."
+    ];
+
+    const randomRange = (min, max) => Math.random() * (max - min) + min;
+    const randomInt = (min, max) => Math.floor(randomRange(min, max + 1));
+
+    function generatePatternDataUrl(baseColor) {
+      const canvas = document.createElement('canvas');
+      const size = 32; 
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = baseColor;
+      ctx.fillRect(0, 0, size, size);
+
+      const pixelCount = randomInt(10, 25); 
+      for (let i = 0; i < pixelCount; i++) {
+        const isLight = Math.random() > 0.5;
+        ctx.fillStyle = isLight ? `rgba(255, 255, 255, ${randomRange(0.4, 0.8)})` 
+                                : `rgba(0, 0, 0, ${randomRange(0.4, 0.8)})`;
+        ctx.fillRect(randomInt(0, size-1), randomInt(0, size-1), 1, 1);
+      }
+      return canvas.toDataURL();
+    }
+
+    function changeBackground() {
+      const color = baseColors[randomInt(0, baseColors.length - 1)];
+      const patternUrl = generatePatternDataUrl(color);
+      
+      document.body.style.backgroundColor = color;
+      document.body.style.backgroundImage = `url(${patternUrl})`;
+      document.body.style.backgroundRepeat = "repeat";
+      document.body.style.backgroundSize = "64px 64px"; 
+    }
+
+    function makeDraggable(winElem, titleElem) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      titleElem.onmousedown = (e) => {
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = () => {
+          document.onmouseup = null;
+          document.onmousemove = null;
+        };
+        document.onmousemove = (e) => {
+          e.preventDefault();
+          pos1 = pos3 - e.clientX;
+          pos2 = pos4 - e.clientY;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          winElem.style.top = (winElem.offsetTop - pos2) + "px";
+          winElem.style.left = (winElem.offsetLeft - pos1) + "px";
+        };
+        winElem.style.zIndex = ++globalZIndex;
+      };
+    }
+
+    // Слушатель для всех кнопок: звук клика + инициализация аудио
+    function bindButtonSound(btn) {
+      btn.addEventListener('mousedown', () => {
+        initAudio();
+        playSoftClick();
+      });
+    }
+
+    function showErrorModal() {
+      const errWin = document.createElement('div');
+      errWin.className = 'window';
+      errWin.style.width = '250px';
+      errWin.style.left = `calc(50% - 125px + ${randomInt(-100, 100)}px)`;
+      errWin.style.top = `calc(50% - 60px + ${randomInt(-100, 100)}px)`;
+      errWin.style.zIndex = ++globalZIndex;
+
+      errWin.innerHTML = `
+        <div class="title-bar">
+          <div class="title-bar-text">Info</div>
+          <div class="title-bar-controls">
+            <button aria-label="Close" class="err-close-btn"></button>
+          </div>
+        </div>
+        <div class="window-body content-center">
+          <p>You cannot close this window.</p>
+          <button class="ok-btn" style="width: 60px;">OK</button>
+        </div>
+      `;
+      desktop.appendChild(errWin);
+      makeDraggable(errWin, errWin.querySelector('.title-bar'));
+
+      const closeErr = () => errWin.remove();
+      
+      const errCloseBtn = errWin.querySelector('.err-close-btn');
+      const okBtn = errWin.querySelector('.ok-btn');
+      
+      bindButtonSound(errCloseBtn);
+      bindButtonSound(okBtn);
+      
+      errCloseBtn.onclick = closeErr;
+      okBtn.onclick = closeErr;
+    }
+
+    function showWaitModal() {
+      const waitWin = document.createElement('div');
+      waitWin.className = 'window';
+      waitWin.style.width = '300px';
+      waitWin.style.left = 'calc(50% - 150px)';
+      waitWin.style.top = 'calc(50% - 60px)';
+      waitWin.style.zIndex = ++globalZIndex;
+      waitWin.style.cursor = 'wait';
+
+      const randomText = waitTexts[randomInt(0, waitTexts.length - 1)];
+
+      waitWin.innerHTML = `
+        <div class="title-bar" style="cursor: wait;">
+          <div class="title-bar-text">Entering...</div>
+        </div>
+        <div class="window-body content-center" style="cursor: wait;">
+          <p>${randomText}</p>
+          <div class="win98-progress">
+            <div class="win98-progress-bar"></div>
+          </div>
+        </div>
+      `;
+      desktop.appendChild(waitWin);
+      makeDraggable(waitWin, waitWin.querySelector('.title-bar'));
+
+      const duration = randomRange(2400, 4500);
+      
+      setTimeout(() => {
+        waitWin.remove();
+        changeBackground();
+        
+        setTimeout(() => {
+          showMainModal();
+        }, randomInt(300, 1400));
+
+      }, duration);
+    }
+
+    function showMainModal() {
+      const mainWin = document.createElement('div');
+      mainWin.className = 'window';
+      
+      const w = randomInt(260, 420);
+      const h = randomInt(150, 200); 
+      
+      mainWin.style.width = w + 'px';
+      mainWin.style.height = h + 'px';
+      mainWin.style.left = `calc(50% - ${w/2}px)`;
+      mainWin.style.top = `calc(50% - ${h/2}px)`;
+      mainWin.style.zIndex = ++globalZIndex;
+
+      const hasCancel = Math.random() < 0.1; // 10% шанс
+
+      mainWin.innerHTML = `
+        <div class="title-bar">
+          <div class="title-bar-text">Enter Room</div>
+          <div class="title-bar-controls">
+            <button aria-label="Close" class="main-close-btn"></button>
+          </div>
+        </div>
+        <div class="window-body content-center">
+          <p>Press a button to proceed to a new room.</p>
+          <div class="buttons-row">
+            <button class="enter-btn" style="min-width: 75px;">Enter</button>
+            ${hasCancel ? `<button class="cancel-btn" style="min-width: 75px;">Cancel</button>` : ''}
+          </div>
+        </div>
+      `;
+      desktop.appendChild(mainWin);
+      makeDraggable(mainWin, mainWin.querySelector('.title-bar'));
+
+      const closeBtn = mainWin.querySelector('.main-close-btn');
+      const enterBtn = mainWin.querySelector('.enter-btn');
+      
+      bindButtonSound(closeBtn);
+      bindButtonSound(enterBtn);
+      
+      closeBtn.onclick = showErrorModal;
+
+      // Если аудиоконтекст уже инициализирован (был хоть один клик на странице) - включаем эмбиент
+      if (audioCtx) {
+        startAmbientSound();
+      }
+
+      const proceedToWait = () => {
+        mainWin.remove();
+        
+        // ВЫКЛЮЧАЕМ эмбиент-звук, когда главное окно пропадает
+        stopAmbientSound();
+        
+        setTimeout(showWaitModal, randomInt(300, 1400));
+      };
+
+      enterBtn.onclick = proceedToWait;
+      
+      if (hasCancel) {
+        const cancelBtn = mainWin.querySelector('.cancel-btn');
+        bindButtonSound(cancelBtn);
+        cancelBtn.onclick = proceedToWait;
+      }
+    }
+
+    changeBackground();
+    setTimeout(showMainModal, 500);
+
+  </script>
+</body>
+</html>
